@@ -27,7 +27,6 @@ app.use(cors({
     origin : 'http://localhost:5173'
 }));
 
-// mongo pass : userthan1111
 
 mongoose.connect(process.env.MONGO_URL)
 
