@@ -4,7 +4,7 @@ import AccountNav from '../AccountNav';
 import axios from 'axios';
 import PlaceImg from '../PlaceImg';
 
-export default function PlacesPage() {
+export default function PlacesPage() { 
 
     const {action} = useParams();
     const [places, setPlaces] = useState([]);

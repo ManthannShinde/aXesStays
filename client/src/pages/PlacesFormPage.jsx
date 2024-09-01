@@ -72,15 +72,15 @@ export default function PlacesFormPage() {
                 <form onSubmit={savePlace}>
                     {/* <h2 className='text-xl mt-6'>Title</h2> */}
                     {inputHeader('Title')}
-                    <input type="text" placeholder='Hotel Name' className='border hover:border-primary' value={title} onChange={ev => setTitle(ev.target.value)}/>
+                    <input required type="text" placeholder='Hotel Name' className='border hover:border-primary' value={title} onChange={ev => setTitle(ev.target.value)}/>
 
                     {inputHeader('Address')}
-                    <input type="text" placeholder='Address of Hotel' className='border hover:border-primary' value={address} onChange={ev => setAddress(ev.target.value)}/>
+                    <input required type="text" placeholder='Address of Hotel' className='border hover:border-primary' value={address} onChange={ev => setAddress(ev.target.value)}/>
 
                     {inputHeader('Photos')}
                         
 
-                    <PhotosUploader addedPic={addedPic} onChange={setAddedPic} />
+                    <PhotosUploader required addedPic={addedPic} onChange={setAddedPic} />
                         
                         {inputHeader('Description')}
                     <textarea value={description} onChange={ev => setDescription(ev.target.value)} className='hover:border-primary'/>
@@ -93,22 +93,22 @@ export default function PlacesFormPage() {
                     {inputHeader('Extra Information')}
                     <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} className='hover:border-primary'/>
 
-                    <div className='mt-6 grid flex gap-y-4 gap-x-8 grid-cols-2'>
+                    <div className='mt-6 flex gap-y-4 gap-x-8 grid-cols-2'>
                         <div>
-                            <label className='mt-2 -mb-1'>Check-In time :</label>
+                            <label required className='mt-2 -mb-1'>Check-In time :</label>
                             <input className='hover:border-primary' type="text" placeholder='12:00 pm' value={checkIn} onChange={ev => setCheckIn(ev.target.value)}/>
                         </div>
                         <div>
-                            <label className='mt-2 -mb-1'>Check-Out Time :</label>
+                            <label required className='mt-2 -mb-1'>Check-Out Time :</label>
                             <input className='hover:border-primary' type="text" placeholder='10:00 am'value={checkOut} onChange={ev => setCheckOut(ev.target.value)}/>
                         </div>
                         <div >
-                            <label className='mt-2 -mb-1'>Number Of Guests : </label>
+                            <label required className='mt-2 -mb-1'>Number Of Guests : </label>
                             <input className='hover:border-primary' type="number" value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)}/>
                         </div>
 
                         <div>
-                            <label className='mt-2 -mb-1'>Price Per Night: </label>
+                            <label required className='mt-2 -mb-1'>Price Per Night: </label>
                             <input className='hover:border-primary' type="text" placeholder="&#8377;" value={price} onChange={ev => setPrice(ev.target.value)}/>
                         </div>
                     </div>

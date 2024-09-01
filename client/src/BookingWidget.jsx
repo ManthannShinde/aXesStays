@@ -50,6 +50,9 @@ export default function BookingWidget({place}) {
       };  
 
       async function bookThisPlace(){
+        if(!user){
+          return alert('Please login to book this place');
+        }
         const totalPrice = calculateTotalPrice(); // Calculate the total price
         setTotalPrice(totalPrice);
  
@@ -65,7 +68,7 @@ export default function BookingWidget({place}) {
   return (
     <div>
       <div className='flex items-center justify-center' >
-                 <div className='bg-white shadow rounded-2xl p-8  text-center rounded-2xl w-1/2'>
+                 <div className='bg-white shadow p-8  text-center rounded-2xl w-1/2'>
                     <h2 className='text-xl font-semibold text-center'>
                         Price : &#8377;{place.price}/per night
                         <br />
@@ -83,7 +86,7 @@ export default function BookingWidget({place}) {
                         <input type="number" value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)} />
                     </div> 
                     <div className='text-left gap-1 mt-3 bg-gray-100 p-2 rounded-2xl border'>
-                        <label>Your Full Name : </label>
+                        <label>Your Full Name :</label>
                         <input type="text" value={name} onChange={ev => setName(ev.target.value)} />
                     </div> 
                     <div className='text-left gap-1 mt-3 bg-gray-100 p-2 rounded-2xl border'>

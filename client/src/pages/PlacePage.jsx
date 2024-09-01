@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import BookingWidget from '../BookingWidget';
 import PlaceGallery from '../PlaceGallery';
 import AddressLink from '../AddressLink';
-
+ 
 export default function PlacePage() {
     const {id} = useParams();
     const [place, setPlace] = useState(null);

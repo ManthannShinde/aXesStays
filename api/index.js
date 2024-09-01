@@ -154,7 +154,7 @@ app.post('/upload', photosMiddleware.array('photos', 100), (req, res) => {
     res.json(uploadedFiles);
 });
 
-
+ 
 app.post('/places', (req, res) => {
     const { token } = req.cookies;
     const {title, address, description, addedPic, perks, extraInfo, checkIn, checkOut, maxGuests, price} = req.body;
@@ -189,7 +189,7 @@ app.get('/places/:id', async  (req,res) => {
     const {id} = req.params;
     res.json(await Place.findById(id))
 })
-
+ 
 app.put('/places', async (req, res) => {
     const { token } = req.cookies;
     const {id, title, address, description, addedPic, perks, extraInfo, checkIn, checkOut, maxGuests, price} = req.body;

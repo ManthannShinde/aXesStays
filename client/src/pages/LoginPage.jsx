@@ -41,12 +41,12 @@ export default function LoginPage() {
   // }
   
 
-  if(redirect) {
+  if(redirect) { 
     return <Navigate to={'/'}/>
   }
 
   return (
-    <div className="flex items-center justify-center grow flex items-center justify-around"
+    <div className=""
          style={{ fontFamily: "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif" }}>
           
       <div className="bg-white p-3 rounded shadow-md w-96 mx-auto mt-6 mb-48">
