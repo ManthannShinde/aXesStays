@@ -225,6 +225,24 @@ app.put('/places', async (req, res) => {
     });
 });
 
+app.delete('/deletehotels/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const placeDoc = await Place.findById(id);
+        if (!placeDoc) {
+            return res.status(404).json({ message: 'Hotel not found' });
+        }
+        await Place.deleteOne({ _id: id });  // Use deleteOne to delete the hotel by its ID
+        res.json({ message: 'Hotel deleted successfully' });
+    } catch (err) {
+        console.error('Error deleting hotel:', err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+
+
+
 
 app.get('/places', async (req,res) => {
     res.json(await Place.find())
