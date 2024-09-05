@@ -54,16 +54,11 @@ app.post('/register', async (req,res) => {
     const { name, email, password, adminKey } = req.body;
 
     try {
-        // Check if the user already exists
-        const existingUser = await User.findOne({ email }); // Await this call
+        const existingUser = await User.findOne({ email }); 
         if (existingUser) {
             return res.status(422).json({ error: 'User already exists' });
         }
-
-        // Determine if the user is an admin
         const isAdmin = adminKey === ADMIN_KEY;
-
-        // Create the new user with hashed password and admin status
         const userDoc = await User.create({
             name,
             email,
@@ -77,31 +72,6 @@ app.post('/register', async (req,res) => {
     }
 });
 
-// app.post('/login', async (req,res) => {
-//     const {email,password} = req.body;
-//     const userDoc = await User.findOne({email});
-//     if(userDoc){
-//         const passOk = bcrypt.compareSync(password, userDoc.password);
-//         // jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecret, {}, (err, token) => {
-//         //     if(err) throw err;
-
-//         // })
-        
-//         if(passOk){
-//             jwt.sign({email:userDoc.email, 
-//                 id:userDoc._id},
-//                 jwtSecret, {}, (err, token) => {
-//                 if(err) throw err;
-//                 res.cookie('token' , token).json(userDoc);
-//             });
-            
-//         } else {
-//             res.status(422).json('not OK');
-//         }
-//     } else {
-//         res.json('not found');
-//     }
-// });
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
