@@ -23,24 +23,7 @@ export default function LoginPage() {
       alert('login failed')
     }
   }
-
-  // async function handleLoginSubmit(ev) {
-  //   ev.preventDefault();
-  //   try {
-  //     const data = await axios.post('/login', { email, password });
-  //     if (data) {
-  //       setUser(data); // Assuming the user data is returned in the response
-  //       alert('Logged in successfully');
-  //       setRedirect(true);
-  //     } else {
-  //       alert('Login failed');
-  //     }
-  //   } catch (error) {
-  //     alert('Login failed');
-  //   }
-  // }
   
-
   if(redirect) { 
     return <Navigate to={'/'}/>
   }
