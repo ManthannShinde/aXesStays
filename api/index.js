@@ -247,10 +247,6 @@ app.delete('/deletehotels/:id', async (req, res) => {
     }
 });
 
-
-
-
-
 app.get('/places', async (req,res) => {
     res.json(await Place.find())
 });
@@ -268,8 +264,6 @@ app.post('/bookings', async (req, res) => {
             throw err;
     })
 });
-
-
 
 app.get('/bookings', async (req,res) => {
     const userData = await getUserDataFromReq(req);
