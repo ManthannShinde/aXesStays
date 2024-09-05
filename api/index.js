@@ -202,28 +202,35 @@ app.get('/places/:id', async  (req,res) => {
 })
  
 app.put('/places', async (req, res) => {
-    const { token } = req.cookies;
-    const {id, title, address, description, addedPic, perks, extraInfo, checkIn, checkOut, maxGuests, price} = req.body;
-    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+    const { id, title, address, description, addedPic, perks, extraInfo, checkIn, checkOut, maxGuests, price } = req.body;
+    
+    try {
         const placeDoc = await Place.findById(id);
-        if(userData.id === placeDoc.owner.toString()){
-            placeDoc.set({
-                title,
-                address,
-                description,
-                photos:addedPic,
-                perks,
-                extraInfo,
-                checkIn,
-                checkOut,
-                maxGuests,
-                price
-            })
-            await placeDoc.save();
-            res.json('ok');
-        }    
-    });
+        if (!placeDoc) {
+            return res.status(404).json({ error: 'Place not found' });
+        }
+
+        placeDoc.set({
+            title,
+            address,
+            description,
+            photos: addedPic,
+            perks,
+            extraInfo,
+            checkIn,
+            checkOut,
+            maxGuests,
+            price,
+        });
+
+        await placeDoc.save();
+        res.json('ok');
+    } catch (err) {
+        console.error('Error updating place:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
+
 
 app.delete('/deletehotels/:id', async (req, res) => {
     const { id } = req.params;
