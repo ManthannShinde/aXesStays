@@ -49,19 +49,33 @@ app.get('/test', (req,res) => {
     res.json('test OK!');
 })
 
+const ADMIN_KEY = "siteadmin"
 app.post('/register', async (req,res) => {
-    const {name,email,password} = req.body;
+    const { name, email, password, adminKey } = req.body;
+
     try {
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email }); // Await this call
+        if (existingUser) {
+            return res.status(422).json({ error: 'User already exists' });
+        }
+
+        // Determine if the user is an admin
+        const isAdmin = adminKey === ADMIN_KEY;
+
+        // Create the new user with hashed password and admin status
         const userDoc = await User.create({
             name,
             email,
-            password : bcrypt.hashSync(password, bcryptSalt),
-        })
-        res.json({userDoc});
+            password: bcrypt.hashSync(password, bcryptSalt),
+            isAdmin
+        });
+
+        res.status(201).json(userDoc);
     } catch (error) {
-        res.status(422).json(error);
+        res.status(422).json({ error: 'Registration failed', details: error.message }); // Provide more details
     }
-})
+});
 
 // app.post('/login', async (req,res) => {
 //     const {email,password} = req.body;
