@@ -63,29 +63,56 @@ app.post('/register', async (req,res) => {
     }
 })
 
-app.post('/login', async (req,res) => {
-    const {email,password} = req.body;
-    const userDoc = await User.findOne({email});
-    if(userDoc){
-        const passOk = bcrypt.compareSync(password, userDoc.password);
-        // jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecret, {}, (err, token) => {
-        //     if(err) throw err;
+// app.post('/login', async (req,res) => {
+//     const {email,password} = req.body;
+//     const userDoc = await User.findOne({email});
+//     if(userDoc){
+//         const passOk = bcrypt.compareSync(password, userDoc.password);
+//         // jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecret, {}, (err, token) => {
+//         //     if(err) throw err;
 
-        // })
+//         // })
         
-        if(passOk){
-            jwt.sign({email:userDoc.email, 
-                id:userDoc._id},
-                jwtSecret, {}, (err, token) => {
-                if(err) throw err;
-                res.cookie('token' , token).json(userDoc);
-            });
+//         if(passOk){
+//             jwt.sign({email:userDoc.email, 
+//                 id:userDoc._id},
+//                 jwtSecret, {}, (err, token) => {
+//                 if(err) throw err;
+//                 res.cookie('token' , token).json(userDoc);
+//             });
             
+//         } else {
+//             res.status(422).json('not OK');
+//         }
+//     } else {
+//         res.json('not found');
+//     }
+// });
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const userDoc = await User.findOne({ email });
+        if (userDoc) {
+            const passOk = bcrypt.compareSync(password, userDoc.password);
+
+            if (passOk) {
+                const token = jwt.sign(
+                    { email: userDoc.email, id: userDoc._id },
+                    jwtSecret,
+                    { expiresIn: '1h' } // Set token expiration
+                );
+
+                res.cookie('token', token, { httpOnly: true }); // Set HTTP only flag for security
+                res.json(userDoc);
+            } else {
+                res.status(401).json({ error: 'Invalid password' });
+            }
         } else {
-            res.status(422).json('not OK');
+            res.status(404).json({ error: 'User not found' });
         }
-    } else {
-        res.json('not found');
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred during login' });
     }
 });
 
