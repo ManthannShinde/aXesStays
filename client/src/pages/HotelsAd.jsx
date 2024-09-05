@@ -23,9 +23,9 @@ function HotelsAd() {
     };
 
     return (
-        <div className='flex items-center justify-center pt-4'>
+        <div className='flex-row items-center justify-center pt-4'>
             {hotels?.length > 0 && hotels.map(hotel => (
-                <div key={hotel._id} className='flex gap-4 bg-gray-100 w-1/2 rounded-2xl shadow overflow-hidden transition-transform hover:bg-gray-200 hover:scale-95'>
+                <div key={hotel._id} className='flex-col gap-4 py-3 bg-gray-100 w-full rounded-2xl shadow overflow-hidden transition-transform hover:bg-gray-200 hover:scale-95'>
                     
                     {/* Hotel Info */}
                     <Link to={`/account/places/${hotel._id}`} className='flex gap-4 grow'>
@@ -46,7 +46,7 @@ function HotelsAd() {
                     <div className='flex items-center pr-4'>
                         <button
                             onClick={() => handleDeleteHotel(hotel._id)}
-                            className='bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-colors duration-200'
+                            className='bg-red-500  text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-colors duration-200'
                         >
                             Delete Hotel
                         </button>
