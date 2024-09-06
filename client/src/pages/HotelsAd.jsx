@@ -39,14 +39,14 @@ function HotelsAd() {
             {cachedHotels?.length > 0 && cachedHotels.map(hotel => (
                 <div key={hotel._id} className='w-full gap-4 overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300'>
                     <Link to={`/account/places/${hotel._id}`} className='flex flex-col sm:flex-row w-full'>
-                        <div className='w-full sm:w-48 h-48 sm:h-full overflow-hidden'>
+                        <div className='w-full sm:w-48 h-48 sm:h-cover overflow-hidden'>
                             <img 
-                                src={hotel.imageUrl || '/default-hotel.jpg'} 
+                                src={`http://localhost:3000/uploads/${hotel.photos[0]}`}
                                 alt={hotel.name} 
                                 className='object-cover w-full h-full transition-transform duration-300 hover:scale-110'
                             />
                         </div>
-                        <div className='flex flex-col justify-between p-4 grow'>
+                        <div className='flex flex-col justify-between p-4 grow w-3/4'>
                             <div>
                                 <h2 className='text-xl font-semibold mb-2'>{hotel.title}</h2><hr />
                                 <p className='text-gray-600 mb-2'>{hotel.address}</p>
