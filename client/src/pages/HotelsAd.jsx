@@ -5,19 +5,25 @@ import { Trash2 } from 'lucide-react';
 
 function HotelsAd() {
     const [hotels, setHotels] = useState([]);
-
+    const [searchHotel, setSearchHotel] = useState('');
+    const [debouncedQ, setDebouncedQ] = useState('');
+    
     useEffect(() => {
         const fetchHotels = async () => {
             try {
-                const response = await axios.get('/places');
+                const response = await axios.get('/places', {
+                    params: { search: searchHotel }
+                });
+                // console.log(searchHotel);
                 setHotels(response.data);
             } catch (err) {
                 console.error("Error fetching hotels:", err);
             }
         };
-
+    
         fetchHotels();
-    }, []);
+    }, [searchHotel]);
+    
 
     const handleDeleteHotel = async (hotelId) => {
         try {
@@ -36,6 +42,7 @@ function HotelsAd() {
 
     return (
         <div className='flex flex-col items-center justify-center pt-4 gap-4 w-full max-w-3xl mx-auto text-left'>
+            <input type="text" placeholder='search hotel' onChange={(e) => setSearchHotel(e.target.value)}/>
             {cachedHotels?.length > 0 && cachedHotels.map(hotel => (
                 <div key={hotel._id} className='w-full gap-4 overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300'>
                     <Link to={`/account/places/${hotel._id}`} className='flex flex-col sm:flex-row w-full'>
