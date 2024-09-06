@@ -16,11 +16,6 @@ export default function ProfilePage() {
         subpage = 'profile';
     }
 
-    // useEffect(() => {
-    //     console.log('Subpage:', subpage);
-    //     console.log('User isAdmin:', user?.isAdmin);
-    // }, [subpage, user]);
-
     async function logout() {
         await axios.post('/logout');
         setRedirect('/');

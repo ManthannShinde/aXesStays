@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const AdminPage = () => {
     const [activeTab, setActiveTab] = useState('hotels');
-    // const [redirect, setRedirect] = useState(null);
     const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -29,15 +28,10 @@ const AdminPage = () => {
           console.error('Logout failed', error);
       }
   };
-  
-
-  //   if (redirect) {
-  //     return <Navigate to={redirect} />;
-  // }
 
   return (
     <div className="px-3 gap-3">
-      {/* Sidebar */}
+
       <div className='flex px-3 gap-3'>
       <button className='primary' onClick={HandleHotelClick}>Hotels</button>
       <button className='primary' onClick={handlePendingClick}>Pending</button>

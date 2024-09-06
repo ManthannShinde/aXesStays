@@ -7,7 +7,6 @@ function HotelsAd() {
     const [hotels, setHotels] = useState([]);
 
     useEffect(() => {
-        // Fetch the initial data on mount
         const fetchHotels = async () => {
             try {
                 const response = await axios.get('/places');
@@ -30,7 +29,6 @@ function HotelsAd() {
         }
     };
 
-    // Use useMemo to cache the hotels data
     const cachedHotels = useMemo(() => {
         console.log("Memoizing hotels:", hotels);
         return hotels;
