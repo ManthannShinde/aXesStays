@@ -29,13 +29,21 @@ const AdminPage = () => {
       }
   };
 
+  function linkClasses(type = null){
+      let classes = 'w-full rounded-2xl text-black bg-gray-200 hover:bg-blue-200';
+      if (type === activeTab) {
+          classes = 'primary ';
+      }
+      return classes;
+  }
+
   return (
     <div className="px-3 gap-3">
 
       <div className='flex px-3 gap-3'>
-      <button className='primary' onClick={HandleHotelClick}>Hotels</button>
-      <button className='primary' onClick={handlePendingClick}>Pending</button>
-      <button className='w-full rounded-2xl text-white bg-red-500' onClick={logout}>Log Out</button>
+      <button className={linkClasses('hotels')} onClick={HandleHotelClick}>Hotels</button>
+      <button className={linkClasses('pending')} onClick={handlePendingClick}>Pending</button>
+      <button className='w-full rounded-2xl text-white bg-gray-200 hover:bg-red-500 hover:text-white transition-all duration-200' onClick={logout}>LogOut</button>
       </div>
 
       {/* Main content */}
