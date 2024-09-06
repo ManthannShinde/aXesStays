@@ -46,9 +46,8 @@ export default function ProfilePage() {
                 <div className='text-center max-w-lg mx-auto'>
                     Logged in as {user.name} <br />
                     {user.isAdmin ? (
-                        <div>
+                        <div className='flex h-6'>
                             <AdminPage />
-                            <button onClick={logout} className='primary max-w-sm mt-2'>LogOut</button>
                         </div>
                     ) : (
                         <button onClick={logout} className='primary max-w-sm mt-2'>LogOut</button>

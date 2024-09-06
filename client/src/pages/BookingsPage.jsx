@@ -32,9 +32,9 @@ export default function BookingsPage() {
 
                         <div className='border-t border-gray-400 mt-3 py-2'>
                             <BookingDates booking={booking}/>
-                            <divc className='pt-2'>
+                            <div className='pt-2'>
                                 Happy Lodging with Axes-Stays
-                            </divc>
+                            </div>
                         </div>
                         </div>
                     </div>
