@@ -7,22 +7,30 @@ function HotelsAd() {
     const [hotels, setHotels] = useState([]);
     const [searchHotel, setSearchHotel] = useState('');
     const [debouncedQ, setDebouncedQ] = useState('');
+
+    const handleDebounce = (item) => {
+        setTimeout(() => {
+            setDebouncedQ(item);
+        }, 2000);
+    }
+
+
+    const fetchHotels = async () => {
+        try {
+            const response = await axios.get('/places', {
+                params: { search: debouncedQ }
+            });
+            // console.log(searchHotel);
+            setHotels(response.data);
+        } catch (err) {
+            console.error("Error fetching hotels:", err);
+        }
+    };
     
     useEffect(() => {
-        const fetchHotels = async () => {
-            try {
-                const response = await axios.get('/places', {
-                    params: { search: searchHotel }
-                });
-                // console.log(searchHotel);
-                setHotels(response.data);
-            } catch (err) {
-                console.error("Error fetching hotels:", err);
-            }
-        };
-    
         fetchHotels();
-    }, [searchHotel]);
+        handleDebounce(searchHotel);
+    }, [searchHotel, debouncedQ]);
     
 
     const handleDeleteHotel = async (hotelId) => {
@@ -36,13 +44,17 @@ function HotelsAd() {
     };
 
     const cachedHotels = useMemo(() => {
-        console.log("Memoizing hotels:", hotels);
+        // console.log("Memoizing hotels:", hotels);
         return hotels;
     }, [hotels]);
 
     return (
-        <div className='flex flex-col items-center justify-center pt-4 gap-4 w-full max-w-3xl mx-auto text-left'>
-            <input type="text" placeholder='search hotel' onChange={(e) => setSearchHotel(e.target.value)}/>
+        <div className='flex flex-col items-center justify-center pt-4 gap-2 w-full max-w-3xl mx-auto text-left'>
+            <input className='border-blue-500 hover:shadow-lg' type="text" placeholder='search hotel' onChange={(e) => setSearchHotel(e.target.value)}/>
+            {cachedHotels?.length === 0 && <>
+            <p>No Hotels Found</p>
+                <img src="https://cdn2.iconfinder.com/data/icons/line-weather/130/No_Data-512.png" alt="" />
+            </>}
             {cachedHotels?.length > 0 && cachedHotels.map(hotel => (
                 <div key={hotel._id} className='w-full gap-4 overflow-hidden bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300'>
                     <Link to={`/account/places/${hotel._id}`} className='flex flex-col sm:flex-row w-full'>
