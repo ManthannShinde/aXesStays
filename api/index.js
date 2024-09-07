@@ -84,10 +84,10 @@ app.post('/login', async (req, res) => {
                 const token = jwt.sign(
                     { email: userDoc.email, id: userDoc._id },
                     jwtSecret,
-                    { expiresIn: '1h' } // Set token expiration
+                    { expiresIn: '1h' } 
                 );
 
-                res.cookie('token', token, { httpOnly: true }); // Set HTTP only flag for security
+                res.cookie('token', token, { httpOnly: true }); 
                 res.json(userDoc);
             } else {
                 res.status(401).json({ error: 'Invalid password' });

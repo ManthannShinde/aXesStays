@@ -58,7 +58,8 @@ export default function BookingWidget({place}) {
  
         const response = await axios.post('/bookings', {checkIn, checkOut, maxGuests, name, phone, place : place._id, price : totalPrice, user: user.id});
         const bookingId = response.data._id;
-        setRedirect(`/account/bookings/${bookingId}`);
+        alert('Booking successful');
+        setRedirect(`/`);
       }
 
       if(redirect){
