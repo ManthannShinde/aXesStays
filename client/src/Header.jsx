@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import { UserContext } from './UserContext';
@@ -8,7 +8,11 @@ export default function Header({searchedHotelsFunc}) {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // searchQuery && searchedHotelsFunc(searchQuery);
+  useEffect(() => {
+    if (searchQuery) {
+      searchedHotelsFunc(searchQuery);
+    }
+  }, [searchQuery, searchedHotelsFunc]); 
 
   const toggleSearch = () => {
     setIsSearchExpanded(!isSearchExpanded);
@@ -31,12 +35,14 @@ export default function Header({searchedHotelsFunc}) {
         <div className='flex items-center bg-gray-100 rounded-full py-2 px-4 shadow-md text-gray-700 overflow-hidden'>
           {isSearchExpanded ? (
             <input
-              type="text"
-              placeholder="Search destinations..."
-              className="bg-transparent py-1 px-2 outline-none w-64 text-gray-700"
-              // value={(e) => setSearchQuery(e.target.value)}
-              autoFocus
-            />
+            type="text"
+            placeholder="Search destinations..."
+            className="bg-transparent py-1 px-2 outline-none w-64 text-gray-700"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} 
+            autoFocus
+          />
+          
           ) : (
             <>
               <div className="border-r border-gray-300 pr-4">Place</div>
