@@ -86,8 +86,15 @@ app.post('/login', async (req, res) => {
                     jwtSecret,
                     { expiresIn: '1h' } 
                 );
-
-                res.cookie('token', token, { httpOnly: true }); 
+                
+                // res.cookie('token', token, { httpOnly: true }); 
+                res.cookie('token', token, {
+                    httpOnly: true,  // Prevent client-side access to the cookie
+                    secure: false,   // Set to true in production when using HTTPS
+                    sameSite: 'lax', // Helps with CSRF protection
+                    maxAge: 3600000, // Cookie expiration (1 hour)
+                  });
+                  
                 res.json(userDoc);
             } else {
                 res.status(401).json({ error: 'Invalid password' });
