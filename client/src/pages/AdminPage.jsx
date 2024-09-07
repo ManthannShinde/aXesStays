@@ -49,7 +49,12 @@ const AdminPage = () => {
       {/* Main content */}
         <div className=''>
             {activeTab === 'hotels' && <HotelsAd />}
-            {activeTab === 'pending' && <div>Pending</div>}
+            {activeTab === 'pending' && 
+                <div>
+                    <p className='w-full pt-4'>No Hotels Pending</p>
+                    <img className='w-full' src="https://cdn2.iconfinder.com/data/icons/line-weather/130/No_Data-512.png" alt="" />
+                </div>
+            }
 
         </div>
       
