@@ -247,7 +247,7 @@ app.delete('/deletehotels/:id', async (req, res) => {
     }
 });
 
-app.get('/places', async (req, res) => {
+app.get('/places', async (req, res) => { 
     const searchQuery = req.query.search || '';
     const places = await Place.find({ title: { $regex: searchQuery, $options: 'i' } }); 
     res.json(places);

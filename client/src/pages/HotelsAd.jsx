@@ -13,7 +13,7 @@ function HotelsAd() {
             setDebouncedQ(item);
         }, 2000);
     }
-
+    
 
     const fetchHotels = async () => {
         try {

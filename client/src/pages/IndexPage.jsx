@@ -8,14 +8,27 @@ import { Link, useOutletContext } from 'react-router-dom';
 export default function IndexPage() {
 
   const passedSearch = useOutletContext();
-  console.log(passedSearch);
+  const searchedHotels = passedSearch.passedSearch;
 
   const [places, setPlaces] = useState([]);
-  useEffect(() => {
-    axios.get('/places').then(response => {
-      setPlaces(response.data);
-    });
-  }, []);
+  const [debouncedQ, setDebouncedQ] = useState('');
+  
+  const fetchHotels = async () => {
+    try {
+        const response = await axios.get('/places', {
+            params: { search: searchedHotels || ''}
+        });
+        setPlaces(response.data);
+    } catch (err) {
+        console.error("Error fetching hotels:", err);
+    }
+  }
+
+    useEffect(() => {
+        fetchHotels();
+    }, [searchedHotels]);
+
+
 
   return (
     <div className='mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 '>
