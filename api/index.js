@@ -12,6 +12,7 @@ const imageDownloader = require('image-downloader');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
+const { log } = require('console');
 
 
 const app = express();
@@ -28,7 +29,9 @@ app.use(cors({
 }));
 
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL).then(()=>{
+    console.log('Connected to MongoDB');
+})
 
 
 ///////////
@@ -281,4 +284,6 @@ app.get('/bookings', async (req,res) => {
 });
 
 
-app.listen(3000);
+app.listen(3000, ()=>{
+    console.log('Server is running on port 3000');  
+});
