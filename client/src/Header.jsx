@@ -11,6 +11,8 @@ export default function Header({searchedHotelsFunc}) {
   useEffect(() => {
     if (searchQuery) {
       searchedHotelsFunc(searchQuery);
+    } else {
+      searchedHotelsFunc('');
     }
   }, [searchQuery, searchedHotelsFunc]); 
 
