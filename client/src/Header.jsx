@@ -34,7 +34,7 @@ export default function Header({searchedHotelsFunc}) {
           />
         </Link>
 
-        <div className='flex items-center bg-gray-100 rounded-full py-2 px-4 shadow-md text-gray-700 overflow-hidden'>
+        <div className='flex items-center bg-gray-100 rounded-full py-2 px-12 shadow-md text-gray-700 overflow-hidden'>
           {isSearchExpanded ? (
             <input
             type="text"
@@ -47,9 +47,9 @@ export default function Header({searchedHotelsFunc}) {
           
           ) : (
             <>
-              <div className="border-r border-gray-300 pr-4">Place</div>
-              <div className="border-r border-gray-300 px-4">Time</div>
-              <div className="pl-4">Guests</div>
+              <div className="border-r border-gray-300 pr-6">Place</div>
+              <div className="border-r border-gray-300 px-6">Time</div>
+              <div className="pl-6 pr-6">Guests</div>
             </>
           )}
           <button 
