@@ -23,21 +23,11 @@ const jwtSecret = 'sdkjffsjdfsdjsdjccjcn';
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname+'/uploads'));
-// app.use(cors({
-//     credentials : true,
-//     // // origin : 'http://localhost:5173'
-//     origin : 'https://a-xes-stays.vercel.app'
-// }));
-
-const corsOptions = {
-    origin: 'https://a-xes-stays.vercel.app', // Specify the exact origin
-    // credentials: true, // Allow cookies and credentials
-  };
-
-  app.use(cors(corsOptions));
-
-// Handle preflight (OPTIONS) requests
-app.options('*', cors(corsOptions));
+app.use(cors({
+    // credentials : true,
+    // // origin : 'http://localhost:5173'
+    origin : 'https://a-xes-stays.vercel.app'
+}));
 
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
