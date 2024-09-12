@@ -31,7 +31,7 @@ app.use('/uploads', express.static(__dirname+'/uploads'));
 
 const corsOptions = {
     origin: 'https://a-xes-stays.vercel.app', // Specify the exact origin
-    credentials: true, // Allow cookies and credentials
+    // credentials: true, // Allow cookies and credentials
   };
 
   app.use(cors(corsOptions));
