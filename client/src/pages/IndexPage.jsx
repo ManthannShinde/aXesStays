@@ -35,7 +35,7 @@ export default function IndexPage() {
       {places.length > 0 && places.map(place => (
         <Link to={'/place/'+place._id} key={place._id}>
         <Card className="rounded-2xl m-2 transition-transform hover:bg-gray-200 hover:scale-95 shadow-lg">
-          <Card.Img variant="top" src={`http://localhost:3000/uploads/${place.photos[0]}`} className="rounded-2xl object-cover aspect-square" />
+          <Card.Img variant="top" src={`${baseURL}/uploads/${place.photos[0]}`} className="rounded-2xl object-cover aspect-square" />
           <Card.Body>
             <Card.Title>{place.title}</Card.Title>
             <Card.Text className="text-sm truncate">
