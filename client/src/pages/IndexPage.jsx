@@ -12,6 +12,9 @@ export default function IndexPage() {
 
   const [places, setPlaces] = useState([]);
   const [debouncedQ, setDebouncedQ] = useState('');
+
+  const baseURL = "https://axesstays.onrender.com"
+  // const baseURL = "http://localhost:3000"
   
   const fetchHotels = async () => {
     try {
