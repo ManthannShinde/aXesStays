@@ -62,7 +62,7 @@ function HotelsAd() {
                     <Link to={`/account/places/${hotel._id}`} className='flex flex-col sm:flex-row w-full'>
                         <div className='w-full sm:w-48 h-48 sm:h-cover overflow-hidden'>
                             <img 
-                                src={`http://localhost:3000/uploads/${hotel.photos[0]}`}
+                                src={`${baseURL}/uploads/${hotel.photos[0]}`}
                                 alt={hotel.name} 
                                 className='object-cover w-full h-full transition-transform duration-300 hover:scale-110'
                             />
