@@ -6,6 +6,8 @@ import HotelsAd from './HotelsAd';
 import axios from 'axios';
 
 const AdminPage = () => {
+    const baseURL = "https://axesstays.onrender.com"
+    // const baseURL = "http://localhost:3000"
     const [activeTab, setActiveTab] = useState('hotels');
     const { setUser } = useContext(UserContext);
     const navigate = useNavigate();

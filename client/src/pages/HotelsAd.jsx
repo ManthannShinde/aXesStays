@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Trash2 } from 'lucide-react';
 
 function HotelsAd() {
+    const baseURL = "https://axesstays.onrender.com"
+    // const baseURL = "http://localhost:3000"
     const [hotels, setHotels] = useState([]);
     const [searchHotel, setSearchHotel] = useState('');
     const [debouncedQ, setDebouncedQ] = useState('');

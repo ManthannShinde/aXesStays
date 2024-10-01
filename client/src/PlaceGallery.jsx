@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 export default function PlaceGallery({ place }) {
+    const baseURL = "https://axesstays.onrender.com"
+    // const baseURL = "http://localhost:3000"
     const [showAllPhotos, setShowAllPhotos] = useState(false);
 
     if (showAllPhotos) {
@@ -20,7 +22,7 @@ export default function PlaceGallery({ place }) {
                         <div key={photo} className='w-full h-96 overflow-hidden rounded-2xl'>
                             <img
                                 className='w-full h-full object-cover'
-                                src={'http://localhost:3000/uploads/' + photo}
+                                src={`${baseURL}/uploads/` + photo}
                                 alt=""
                             />
                         </div>

@@ -6,6 +6,8 @@ import PlaceGallery from '../PlaceGallery';
 import AddressLink from '../AddressLink';
  
 export default function PlacePage() {
+    const baseURL = "https://axesstays.onrender.com"
+    // const baseURL = "http://localhost:3000"
     const {id} = useParams();
     const [place, setPlace] = useState(null);
     

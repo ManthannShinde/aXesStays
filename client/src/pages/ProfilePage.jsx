@@ -7,6 +7,8 @@ import AccountNav from '../AccountNav';
 import AdminPage from './AdminPage';
 
 export default function ProfilePage() {
+    const baseURL = "https://axesstays.onrender.com"
+    // const baseURL = "http://localhost:3000"
 
     const [redirect, setRedirect] = useState(null);  
     const { ready, user, setUser } = useContext(UserContext);

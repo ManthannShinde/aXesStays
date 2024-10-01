@@ -14,7 +14,7 @@ const multer = require('multer');
 const fs = require('fs');
 const { log } = require('console');
 
-
+ 
 const app = express(); 
 
 const bcryptSalt = bcrypt.genSaltSync(10);
@@ -22,14 +22,14 @@ const jwtSecret = 'sdkjffsjdfsdjsdjccjcn';
 
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname+'/uploads'));
+app.use('/uploads', express.static(__dirname+'/uploads')); 
 app.use(cors({
     // credentials : true,
-    // origin : 'http://localhost:5173'
-    origin : 'https://a-xes-stays.vercel.app'
+    origin : 'http://localhost:5173'
+    // origin : 'https://a-xes-stays.vercel.app'
 }));
 
-
+ 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log('Connected to MongoDB');
 })
