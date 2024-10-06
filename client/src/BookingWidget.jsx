@@ -26,8 +26,7 @@ export default function BookingWidget({place}) {
           const checkInDate = new Date(checkIn);
           const checkOutDate = new Date(checkOut);
           const timeDiff = checkOutDate - checkInDate;
-          const days = timeDiff / (1000 * 60 * 60 * 24); // Convert milliseconds to days 
-          
+          const days = timeDiff / (1000 * 60 * 60 * 24); 
     
           if (days > 1) {
            
@@ -53,7 +52,7 @@ export default function BookingWidget({place}) {
         if(!user){
           return alert('Please login to book this place');
         }
-        const totalPrice = calculateTotalPrice(); // Calculate the total price
+        const totalPrice = calculateTotalPrice();
         setTotalPrice(totalPrice);
  
         const response = await axios.post('/bookings', {checkIn, checkOut, maxGuests, name, phone, place : place._id, price : totalPrice, user: user.id});
